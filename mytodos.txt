@@ -1,0 +1,3 @@
+read:python [priority:Medium]
+drink:water [priority:Medium]
+play:valorant [priority:Medium]
