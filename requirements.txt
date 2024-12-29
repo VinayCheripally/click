@@ -1,0 +1,7 @@
+click
+pyttsx3
+twilio
+python-dotenv
+google-generativeai
+SpeechRecognition
+pyaudio

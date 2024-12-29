@@ -2,7 +2,6 @@ import sqlite3
 
 DATABASE = "todos.db"
 
-# Create a database and table if they don't exist
 def init_db():
     conn = sqlite3.connect("todos.db")
     cursor = conn.cursor()
