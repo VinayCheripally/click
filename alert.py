@@ -57,11 +57,11 @@ def alert_todos(todos):
     for todo in todos:
         name, desc, due_date = todo
         message = f"Reminder: {name} is due at {due_date}. Description: {desc}"
-        m = client.messages.create(
-        body=message, 
-        from_=twilio_sender,  
-        to=twilio_receiver   
-            )
+        # m = client.messages.create(
+        # body=message, 
+        # from_=twilio_sender,  
+        # to=twilio_receiver   
+        #     )
         engine.say(message)
     engine.runAndWait()
 
