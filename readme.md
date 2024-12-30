@@ -53,5 +53,21 @@ This is a project where you can add tasks and it will remind you before the due 
    and for using command line interface just use the command
 
 ```bash
- python main.py add-todo -n <name of the task> -d <description of thr task> --due<due date and time in ISO 8601-like format> <priority>
+ python main.py add-todo -n <name of the task> -d <description of thr task> --due <due date and time in ISO 8601-like format> <priority>
+```
+
+Below are the priorites mapping
+
+PRIORITIES={
+"o":"Optional",
+"l":"Low",
+"m":"Medium",
+"h":"High",
+"c":"Crucial"
+}
+
+example command
+
+```bash
+python main.py add-todo -n "Buy Milk" -d "Buy milk from store" --due 2024-12-31_18:00:00 m
 ```
