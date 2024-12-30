@@ -1,5 +1,6 @@
 import sqlite3
 
+
 DATABASE = "todos.db"
 
 def init_db():

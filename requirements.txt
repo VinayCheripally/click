@@ -4,4 +4,4 @@ twilio
 python-dotenv
 google-generativeai
 SpeechRecognition
-pyaudio
+pyaudio 

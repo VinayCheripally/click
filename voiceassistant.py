@@ -15,7 +15,6 @@ def listen_for_wake_word(recognizer, microphone, wake_word="hello"):
             text = recognizer.recognize_google(audio).lower()
             print(f"Heard: {text}")
             
-            # Check if the wake word is detected
             if wake_word in text:
                 print("Wake word detected!")
                 return True
