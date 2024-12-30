@@ -5,6 +5,8 @@ import pyttsx3
 from twilio.rest import Client
 from dotenv import load_dotenv
 import os
+from popup import popup_window_with_timeout
+import threading
 
 load_dotenv() 
 
@@ -52,26 +54,32 @@ def get_due_soon_todos():
 
 def alert_todos(todos):
     """Alert the user about the due todos using text-to-speech."""
-    print(todos)
     engine = pyttsx3.init()
+    def speak_message(text):
+        engine.say(message)
+        engine.runAndWait()
     for todo in todos:
         name, desc, due_date = todo
         message = f"Reminder: {name} is due at {due_date}. Description: {desc}"
-        # m = client.messages.create(
-        # body=message, 
-        # from_=twilio_sender,  
-        # to=twilio_receiver   
-        #     )
-        engine.say(message)
-    engine.runAndWait()
+        threading.Thread(target=speak_message,args=(message,)).start()
+        if not popup_window_with_timeout(message):
+            m = client.messages.create(
+            body=message, 
+            from_=twilio_sender,  
+            to=twilio_receiver   
+            )
 
 def check_todos_periodically():
-    while True:
-        due_soon_todos = get_due_soon_todos()
-        if due_soon_todos:
-            alert_todos(due_soon_todos)
-        delete_overdue_todos()
-        time.sleep(300)  
+    try:
+        while True:
+            due_soon_todos = get_due_soon_todos()
+            if due_soon_todos:
+                alert_todos(due_soon_todos)
+            delete_overdue_todos()
+            time.sleep(300)  
+    except KeyboardInterrupt:
+        print("\nProgram interrupted. Exiting...")
+        exit(0)
 
 if __name__ == "__main__":
     check_todos_periodically()
